@@ -47,20 +47,28 @@ abstract class TestCase extends AbstractPackageTestCase
 
         $app['db']->connection()->getSchemaBuilder()->create(Themis::getModelHasPermissionsTableName(), function (Blueprint $table): void {
             $table->id();
-            $table->foreignId('permission_id')->constrained()->cascadeOnDelete();
-            $table->morphs('model');
+            $table->foreignId(Themis::getPermissionIdColumnName())->constrained()->cascadeOnDelete();
+            $table->morphs(Themis::getModelColumnName());
             $table->timestamps();
 
-            $table->unique(['model_type', 'model_id', 'permission_id']);
+            $table->unique([
+                Themis::getModelIdColumnName(),
+                Themis::getModelTypeColumnName(),
+                Themis::getPermissionIdColumnName(),
+            ]);
         });
 
         $app['db']->connection()->getSchemaBuilder()->create(Themis::getModelHasRolesTableName(), function (Blueprint $table): void {
             $table->id();
-            $table->foreignId('role_id')->constrained()->cascadeOnDelete();
-            $table->morphs('model');
+            $table->foreignId(Themis::getRoleIdColumnName())->constrained()->cascadeOnDelete();
+            $table->morphs(Themis::getModelColumnName());
             $table->timestamps();
 
-            $table->unique(['model_type', 'model_id', 'role_id']);
+            $table->unique([
+                Themis::getModelIdColumnName(),
+                Themis::getModelTypeColumnName(),
+                Themis::getRoleIdColumnName(),
+            ]);
         });
     }
 
