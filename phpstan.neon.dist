@@ -1,0 +1,14 @@
+includes:
+    - phpstan-baseline.neon
+
+parameters:
+    level: 9
+    excludePaths:
+        - src/*Test.php
+    ignoreErrors:
+        - '#^Dynamic call to static method#'
+    paths:
+        - src
+        - config
+    tmpDir: build/phpstan
+    checkMissingIterableValueType: false
