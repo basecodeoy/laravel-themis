@@ -1,0 +1,26 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Method BombenProdukt\\\\Themis\\\\Permission\\:\\:roles\\(\\) should return Illuminate\\\\Database\\\\Eloquent\\\\Relations\\\\BelongsToMany\\<BombenProdukt\\\\Themis\\\\Role\\> but returns Illuminate\\\\Database\\\\Eloquent\\\\Relations\\\\BelongsToMany\\<Illuminate\\\\Database\\\\Eloquent\\\\Model\\>\\.$#"
+			count: 1
+			path: src/Permission.php
+
+		-
+			message: "#^Return type \\(Illuminate\\\\Database\\\\Eloquent\\\\Relations\\\\BelongsToMany\\<BombenProdukt\\\\Themis\\\\Role\\>\\) of method BombenProdukt\\\\Themis\\\\Permission\\:\\:roles\\(\\) should be compatible with return type \\(Illuminate\\\\Database\\\\Eloquent\\\\Relations\\\\BelongsToMany\\<BombenProdukt\\\\Themis\\\\RoleInterface\\>\\) of method BombenProdukt\\\\Themis\\\\PermissionInterface\\:\\:roles\\(\\)$#"
+			count: 1
+			path: src/Permission.php
+
+		-
+			message: "#^Type BombenProdukt\\\\Themis\\\\RoleInterface in generic type Illuminate\\\\Database\\\\Eloquent\\\\Relations\\\\BelongsToMany\\<BombenProdukt\\\\Themis\\\\RoleInterface\\> in PHPDoc tag @return is not subtype of template type TRelatedModel of Illuminate\\\\Database\\\\Eloquent\\\\Model of class Illuminate\\\\Database\\\\Eloquent\\\\Relations\\\\BelongsToMany\\.$#"
+			count: 1
+			path: src/PermissionInterface.php
+
+		-
+			message: "#^Return type \\(Illuminate\\\\Database\\\\Eloquent\\\\Relations\\\\MorphToMany\\<BombenProdukt\\\\Themis\\\\Permission\\>\\) of method BombenProdukt\\\\Themis\\\\Role\\:\\:permissions\\(\\) should be compatible with return type \\(Illuminate\\\\Database\\\\Eloquent\\\\Relations\\\\MorphToMany\\<BombenProdukt\\\\Themis\\\\PermissionInterface\\>\\) of method BombenProdukt\\\\Themis\\\\RoleInterface\\:\\:permissions\\(\\)$#"
+			count: 1
+			path: src/Role.php
+
+		-
+			message: "#^Type BombenProdukt\\\\Themis\\\\PermissionInterface in generic type Illuminate\\\\Database\\\\Eloquent\\\\Relations\\\\MorphToMany\\<BombenProdukt\\\\Themis\\\\PermissionInterface\\> in PHPDoc tag @return is not subtype of template type TRelatedModel of Illuminate\\\\Database\\\\Eloquent\\\\Model of class Illuminate\\\\Database\\\\Eloquent\\\\Relations\\\\MorphToMany\\.$#"
+			count: 1
+			path: src/RoleInterface.php
