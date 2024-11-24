@@ -1,0 +1,58 @@
+<?php declare(strict_types=1);
+
+/**
+ * Copyright (C) BaseCode Oy - All Rights Reserved
+ *
+ * For the full copyright and license information, please view
+ * the LICENSE file that was distributed with this source code.
+ */
+
+namespace BaseCodeOy\Themis;
+
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
+
+/**
+ * @property Collection<int, Permission> $permissions
+ */
+trait HasPermissionsTrait
+{
+    /**
+     * @return MorphToMany<Permission>
+     */
+    public function permissions(): MorphToMany
+    {
+        return $this->morphToMany(
+            Themis::getPermissionModel(),
+            Themis::getModelColumnName(),
+            Themis::getModelHasPermissionsTableName(),
+            Themis::getModelIdColumnName(),
+            Themis::getPermissionIdColumnName(),
+        );
+    }
+
+    public function assignPermission(string $permission): void
+    {
+        $this->permissions()->attach(ModelFinder::permission($permission));
+    }
+
+    public function revokePermission(string $permission): void
+    {
+        $this->permissions()->detach(ModelFinder::permission($permission));
+    }
+
+    public function hasPermission(string $permission): bool
+    {
+        return PermissionMatcher::hasOne($this, $permission);
+    }
+
+    public function hasPermissions(array $permissions): bool
+    {
+        return PermissionMatcher::hasMany($this, $permissions);
+    }
+
+    public function hasAnyPermission(array $permissions): bool
+    {
+        return PermissionMatcher::hasAny($this, $permissions);
+    }
+}
